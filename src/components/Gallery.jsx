@@ -43,9 +43,10 @@ const AnimatedPhoto = ({ photo, index, onZoom }) => {
                     setRotate({ x: -(e.clientY - rect.top - rect.height / 2) / 25, y: (e.clientX - rect.left - rect.width / 2) / 25 });
                 }}
                 onMouseLeave={() => setRotate({ x: 0, y: 0 })}
+                onClick={() => onZoom(index)}
                 className="relative group cursor-zoom-in overflow-hidden rounded-sm shadow-2xl border border-white/5 bg-zinc-900"
             >
-                <img src={photo.url} alt={photo.title} onClick={() => onZoom(index)} className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" />
+                <img src={photo.url} alt={photo.title} className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" />
                 
                 {/* Overlay Infos + Bouton Téléchargement rapide */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
