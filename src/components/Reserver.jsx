@@ -29,11 +29,11 @@ const reservation = () => {
                      `*Format Choisi:* ${selectedFormat}%0A` +
                      `*Message:* ${message}`;
 
-        setTimeout(() => {
-            window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
-            setIsSubmitting(false);
-            setIsSent(true);
-        }, 1200);
+        // Sur mobile, window.open dans une pause (setTimeout) est souvent bloqué
+        // par sécurité. On affiche l'animation de succès et on redirige directement.
+        setIsSubmitting(false);
+        setIsSent(true);
+        window.location.href = `https://wa.me/${phoneNumber}?text=${text}`;
     };
 
     return (
