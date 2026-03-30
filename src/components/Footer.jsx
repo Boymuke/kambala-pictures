@@ -27,7 +27,7 @@ const Footer = () => {
                         <a href="mailto:contact@kambalapictures.com" className="text-zinc-400 hover:text-white transition-colors text-sm">
                             contact@kambalapictures.com
                         </a>
-                        <span className="text-zinc-500 text-sm">Kinshasa, Gombe</span>
+                        <span className="text-zinc-500 text-sm">Kinshasa, Limete</span>
                     </div>
 
                     {/* Social - Liens Textuels */}
@@ -47,7 +47,7 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-zinc-600 uppercase tracking-[0.4em]">
                     <p>© {currentYear} Kambala Pictures — Droits Réservés</p>
-                    <p className="opacity-50">Réalisé avec soin par Exaucé</p>
+                    <p className="opacity-50">Réalisé avec soin par BMK Coding</p>
                 </div>
             </div>
         </footer>

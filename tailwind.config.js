@@ -7,8 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'kambala-dark': '#121212',
-        'kambala-gold': '#D4AF37',
+        // AVANT : brand-dark était Noir (#0a0a0a)
+        // MAINTENANT : Il devient ton Marron
+        "brand-dark": "#2a1a15", // Un marron profond et élégant pour le fond
+        
+        // AVANT : brand-brown était Marron
+        // MAINTENANT : Il devient ton Noir ou un Anthracite très foncé
+        "brand-brown": "#0a0a0a", // Le noir pour les accents, boutons et détails
       },
     },
   },

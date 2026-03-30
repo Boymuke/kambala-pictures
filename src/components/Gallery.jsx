@@ -47,8 +47,6 @@ const AnimatedPhoto = ({ photo, index, onZoom }) => {
                 className="relative group cursor-zoom-in overflow-hidden rounded-sm shadow-2xl border border-white/5 bg-zinc-900"
             >
                 <img src={photo.url} alt={photo.title} className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" />
-                
-                {/* Overlay Infos + Bouton Téléchargement rapide */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
                     <div className="flex justify-between items-end">
                         <div>
@@ -94,15 +92,34 @@ const MusicPlayer = () => {
 
 // --- COMPOSANT PRINCIPAL ---
 const Gallery = () => {
+    const [allPhotos, setAllPhotos] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [activeIndex, setActiveIndex] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const photosPerPage = 40; // Affiche beaucoup plus de photos d'un coup
+    const photosPerPage = 40; 
 
-    const allPhotos = Array.from({ length: 67 }).map((_, i) => ({
-        id: i,
-        url: `https://picsum.photos/${i % 2 === 0 ? '800/1200' : '1200/800'}?sig=${i}`,
-        title: `Capture n°${i + 1}`
-    }));
+    const cloudName = "dcem1jiw9";
+    const tag = "Gallerie Kambala";
+
+    useEffect(() => {
+        // Récupération automatique de tes 66 photos
+        fetch(`https://res.cloudinary.com/${cloudName}/image/list/${encodeURIComponent(tag)}.json`)
+            .then((res) => res.json())
+            .then((data) => {
+                const formattedPhotos = data.resources.map((res, i) => ({
+                    id: i,
+                    // Utilisation de q_auto et f_auto pour que ça charge vite à Kinshasa
+                    url: `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto/${res.public_id}.${res.format}`,
+                    title: `Capture Kambala n°${i + 1}`
+                }));
+                setAllPhotos(formattedPhotos);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Erreur de chargement Cloudinary:", err);
+                setLoading(false);
+            });
+    }, []);
 
     const totalPages = Math.ceil(allPhotos.length / photosPerPage);
     const currentPhotos = allPhotos.slice((currentPage - 1) * photosPerPage, currentPage * photosPerPage);
@@ -120,6 +137,14 @@ const Gallery = () => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [activeIndex, showNext, showPrev]);
+
+    if (loading) {
+        return (
+            <div className="bg-brand-dark min-h-screen flex items-center justify-center">
+                <div className="text-white font-serif italic text-xl animate-pulse">Chargement de la galerie...</div>
+            </div>
+        );
+    }
 
     return (
         <section className="bg-brand-dark min-h-screen pt-40 pb-20 px-6 overflow-hidden text-white">
@@ -148,17 +173,15 @@ const Gallery = () => {
                     </AnimatePresence>
                 </div>
 
-                {/* Pagination */}
                 <div className="flex flex-col items-center mt-24 gap-8 border-t border-white/5 pt-12">
                     <div className="flex gap-4">
                         {Array.from({ length: totalPages }).map((_, i) => (
-                            <button key={i} onClick={() => { setCurrentPage(i + 1); setActiveIndex(null); }} className={`w-12 h-12 rounded-full transition-all duration-500 text-[10px] font-bold border ${currentPage === i + 1 ? "bg-brand-brown border-brand-brown text-white scale-110 shadow-lg shadow-brand-brown/20" : "border-white/10 text-zinc-500 hover:border-white/40"}`}>{i + 1}</button>
+                            <button key={i} onClick={() => { setCurrentPage(i + 1); setActiveIndex(null); window.scrollTo({top: 0, behavior: 'smooth'}); }} className={`w-12 h-12 rounded-full transition-all duration-500 text-[10px] font-bold border ${currentPage === i + 1 ? "bg-brand-brown border-brand-brown text-white scale-110 shadow-lg shadow-brand-brown/20" : "border-white/10 text-zinc-500 hover:border-white/40"}`}>{i + 1}</button>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* --- LIGHTBOX AVEC NAVIGATION & TÉLÉCHARGEMENT --- */}
             <AnimatePresence>
                 {activeIndex !== null && (
                     <motion.div 
@@ -166,7 +189,6 @@ const Gallery = () => {
                         onClick={() => setActiveIndex(null)}
                         className="fixed inset-0 z-[150] bg-black/98 backdrop-blur-2xl flex flex-col items-center justify-center p-4"
                     >
-                        {/* Barre d'outils haut */}
                         <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-[160]">
                             <div className="text-white/40 text-[10px] tracking-widest uppercase">Kambala High Definition View</div>
                             <div className="flex gap-6">
@@ -180,7 +202,6 @@ const Gallery = () => {
                             </div>
                         </div>
 
-                        {/* Flèches */}
                         {activeIndex > 0 && (
                             <button onClick={showPrev} className="absolute left-4 md:left-10 p-4 text-white/20 hover:text-brand-brown transition-all z-[160]"><ChevronLeft size={48} strokeWidth={1} /></button>
                         )}

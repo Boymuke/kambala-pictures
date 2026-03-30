@@ -7,32 +7,32 @@ const servicesList = [
     title: "Format A5",
     price: "15$",
     description: "Le format intime, idéal pour vos bureaux ou vos tables de chevet. Une touche d'élégance discrète.",
-    // Image d'un petit cadre élégant sur un bureau
-    image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=1000&auto=format&fit=crop", 
+    // Remplace "ID_DE_TA_PHOTO_A5" par le vrai nom (public_id) de ta photo dans Cloudinary
+    image: "https://res.cloudinary.com/dcem1jiw9/image/upload/q_auto,f_auto,c_fill,w_800,h_1000/WhatsApp_Image_2026-03-24_at_18.57.02_kdh4fh.jpg", 
     features: ["Impression Haute Définition", "Papier d'art premium", "Parfait pour les petits cadeaux"],
   },
   {
     title: "Format A4",
     price: "25$",
     description: "Le standard de l'élégance. Idéal pour créer des galeries murales composées de plusieurs souvenirs.",
-    // Image d'un portrait artistique
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
+    // Remplace par l'ID de la photo A4
+    image: "https://res.cloudinary.com/dcem1jiw9/image/upload/q_auto,f_auto,c_fill,w_800,h_1000/WhatsApp_Image_2026-03-24_at_18.57.02_52_brmh2g.jpg",
     features: ["Format standard salon", "Papier d'art premium", "Encadrement sur mesure inclus"],
   },
   {
     title: "Format A3",
     price: "35$",
     description: "Pour ceux qui veulent marquer les esprits. Une taille généreuse qui capture chaque détail de l'émotion.",
-    // Image d'une décoration intérieure moderne avec un grand cadre
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop",
+    // Remplace par l'ID de la photo A3
+    image: "https://res.cloudinary.com/dcem1jiw9/image/upload/q_auto,f_auto,c_fill,w_800,h_1000/WhatsApp_Image_2026-03-24_at_18.57.02_36_rxotyp.jpg",
     features: ["Finition Mat ou Brillant", "Papier d'art premium", "Impact visuel garanti"],
   },
   {
     title: "Format A2",
     price: "45$",
     description: "L'expérience galerie chez vous. La pièce maîtresse pour transformer votre mur en une véritable exposition.",
-    // Image d'un grand tableau d'art abstrait/photo dans un loft
-    image: "https://images.unsplash.com/photo-1544457070-4cd773b4d71e?q=80&w=1000&auto=format&fit=crop",
+    // Remplace par l'ID de la photo A2
+    image: "https://res.cloudinary.com/dcem1jiw9/image/upload/q_auto,f_auto,c_fill,w_800,h_1000/WhatsApp_Image_2026-02-01_at_13.12.36_jp7fj5.jpg",
     features: ["Impression Extra-Large", "Encadrement haut de gamme", "Traitement UV longue durée"],
   }
 ];
