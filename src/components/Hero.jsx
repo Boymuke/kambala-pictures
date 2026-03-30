@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Camera, Video, Brush } from "lucide-react";
 import { useInView } from "react-intersection-observer";
+import { NavLink } from "react-router-dom";
 
 
 // --- DONNÉES ---
@@ -257,13 +258,13 @@ const Hero = () => {
                             Basé à Kinshasa, Kambala Pictures crée des portraits intemporels qui racontent votre histoire avec une esthétique brute et sophistiquée.
                         </motion.p>
                         <motion.div variants={itemVariants}>
-                            <a
-                                href="#portfolio"
+                            <NavLink
+                                to="/portfolio"
                                 className="group relative inline-flex items-center gap-5 border border-brand-light/20 px-8 md:px-12 py-5 md:py-6 text-xs font-bold uppercase tracking-[0.3em] text-brand-light hover:bg-brand-light hover:text-brand-dark transition-all duration-700"
                             >
                                 Découvrir la Galerie
                                 <div className="w-8 h-[1px] bg-brand-light group-hover:bg-brand-dark transition-all duration-500" />
-                            </a>
+                            </NavLink>
                         </motion.div>
                     </motion.div>
                 </div>
